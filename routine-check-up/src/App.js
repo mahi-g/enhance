@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
-        <Container style={{height:'100vh'}} fluid className="dr-example-container bg-secondary">
+        <Container style={{minHeight: '100vh', height: '100%'}} fluid className="dr-example-container bg-secondary">
             <Routes />
         </Container>
         <Footer />
