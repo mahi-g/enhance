@@ -1,0 +1,22 @@
+{
+  "name": "Anthony",
+  "id": 10001,
+  "curWeekPoints": 100,
+  "friends":[
+    10002
+  ],
+  "Tasks": [
+    {
+      "name": "Do Laundry",
+      "id": 1,
+      "description": "This is placeholder text for the description.",
+      "daysActive": [true, false, false, false, false, false, true]
+    },
+    {
+      "name": "Make Bed",
+      "id": 2,
+      "description": "Make your bed before work so it doesn't look bad in meetings.",
+      "daysActive": [false, true, true, true, true, true, false]
+    }
+  ]
+}

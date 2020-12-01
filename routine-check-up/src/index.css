@@ -1,0 +1,8 @@
+body, h2 {
+    color: white;
+}
+
+.Divider {
+    border: 1px solid #c1c1c5;
+    margin-bottom: 16px;
+}

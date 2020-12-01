@@ -10,22 +10,7 @@ const Footer = () => {
         <Nav justified style={bgColor}>
             <NavItem>
                 <NavLink disabled>
-                    Copyright 2020
-                </NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink href="#">
-                    Home
-                </NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink href="#">
-                    About
-                </NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink href="#">
-                    Contact
+                    Footer Branding
                 </NavLink>
             </NavItem>
         </Nav>
