@@ -8,11 +8,11 @@ const tasks = ['Task One', 'Task Two'];
 
 const TaskControl = () => {
 
-    const viewTasks = tasks.map(task => {
+    const viewTasks = tasks.map((task, index) => {
         return (
             <Row>
                 <Col sm={{size: 6, offset: 3}} >
-                    <Task taskName={task}/>
+                    <Task taskName={task} taskKey={index+1}/>
                 </Col>
             </Row>
         )
