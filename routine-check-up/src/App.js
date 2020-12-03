@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router
-} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './routes/Routes'
 
 import axios from 'axios';
@@ -20,22 +18,28 @@ function App() {
   useEffect(() => {
     axios.get(`http://localhost:8080/users/${CURRENT_USER}`).then(
       ({ data }) => {
-        console.log("Data",data.Tasks);
         setTasks(data.Tasks);
       }
     )
   },[]);
 
   const handleTaskDeletion = (id) => {
-      console.log(id);
-      console.log("Delete");
       const newTaskList = taskList.filter( (task) => task.id != id);
-      console.log(newTaskList);
       newTaskList.length !== 0 ? setTasks(newTaskList) : setTasks([{id:0, name:0, description: ""}]);
   }
 
   const handleTaskClick = () => {
     console.log("Check");
+  }
+
+  const handleAddTask = (formData) => {
+    //id generation is temporary, this will be handled by the db after a post request to api
+    
+    let currId = parseInt(taskList[taskList.length-1].id);
+    currId++;
+    const newTaskList = taskList.concat({...formData, id:currId});
+    console.log(newTaskList);
+    setTasks(newTaskList);
   }
 
   return (
@@ -47,6 +51,7 @@ function App() {
               tasks={taskList}
               handleTaskDeletion={handleTaskDeletion}
               handleTaskClick={handleTaskClick}
+              handleAddTask={handleAddTask}
             />
         </Container>
         <Footer />

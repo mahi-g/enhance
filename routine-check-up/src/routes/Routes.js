@@ -16,6 +16,7 @@ const Routes = (props) => {
                         tasks = {props.tasks}
                         handleTaskDeletion={props.handleTaskDeletion}
                         handleTaskClick={props.handleTaskClick}
+                        handleAddTask={props.handleAddTask}
                     />
                 </Route>
                 <Route>

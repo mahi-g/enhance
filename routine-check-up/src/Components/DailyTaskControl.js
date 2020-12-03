@@ -5,12 +5,12 @@ import { Col, Row } from "shards-react";
 
 
 const DailyTaskControl = (props) => {
-
+    console.log("2: ", props)
     return(
         <>
             <Row>
                 <Col sm={{size: 6, offset: 3}} >
-                    <DailyTaskHeader />
+                    <DailyTaskHeader handleAddTask={props.handleAddTask} />
                 </Col>
             </Row>
 
