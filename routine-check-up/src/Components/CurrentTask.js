@@ -2,6 +2,9 @@ import React from 'react';
 import { Card, CardBody, CardFooter,   CardHeader, CardTitle, CardSubtitle } from 'shards-react';
 import { AiOutlineCloseCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 
+const card = {
+    marginTop: "5%"
+}
 const cardHeader = {
     borderBottom: '1px solid #f0f3f7',
     background:"#ffffff",
@@ -16,31 +19,38 @@ const cardFooter = {
 const cardBody = {
     background: "#fafbff",
 }
+const category = {
+    background: 'tomato',
+    color: '#ffffff',
+    fontWeight: 'bold',
+    fontSize: '.7em',
+    padding: "2%",
+    borderRadius: '3px'
+}
 
 const CurrentTask = (props) => {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        props.handleTaskDeletion(tasks[0].id);
+        props.handleTaskDeletion(currentTask.id);
     }
 
-    const { tasks } = props;
+    const { currentTask } = props;
     console.log("TaskToday ", props);
     return(
-        <Card>
-            <CardHeader style={cardHeader}>{tasks[0].id || ""}: { tasks[0].name ||"Add task to get started"}</CardHeader>    
-            { tasks[0].description && <CardBody style={cardBody}>
-                                            {tasks[0].description}
-                                        </CardBody> 
+        <Card style={ card }>
+            <CardHeader style={ cardHeader }>{ currentTask.id || "" }. { currentTask.name ||"Add task to get started"}</CardHeader>    
+            { currentTask.description 
+              && <CardBody style={cardBody}> {currentTask.description} </CardBody> 
             }
             <CardFooter style={ cardFooter }>
-                <p>Reading</p>
-                <div style={{display:'flex', flex:'column'}}>
+                <p style={ category }>{currentTask.category}</p>
+                <div style={ {display:'flex', flex:'column', justifyContent:'space-around'} }>
                     <div onClick={ props.handleTaskClick }>
-                        <AiOutlineCheckCircle />
+                        <AiOutlineCheckCircle size={30} />
                     </div>
                     <div onClick={ handleDelete }>
-                        <AiOutlineCloseCircle />
+                        <AiOutlineCloseCircle size={30} />
                     </div>
                 </div>
             </CardFooter>

@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Button, Form, FormInput, FormGroup, FormSelect, FormTextarea, Modal, ModalBody, ModalHeader } from "shards-react";
+import { 
+    Button, 
+    Form, 
+    FormInput, 
+    FormGroup, 
+    FormSelect, 
+    FormTextarea, 
+    Modal, 
+    ModalBody, 
+    ModalHeader 
+} from "shards-react";
 
 const ModalForm = (props) => {
     const [open, setOpen] = useState(false);
@@ -46,7 +56,7 @@ const ModalForm = (props) => {
                 </FormGroup>
                 <FormGroup>
                     <label htmlFor="#categories">Category</label>
-                    <FormSelect name="categories" id="#categories">
+                    <FormSelect name="category" id="#categories">
                         <option value="reading">Reading</option>
                         <option value="cleaning">Cleaning</option>
                         <option value="organization">Exercise</option>

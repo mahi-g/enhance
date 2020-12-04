@@ -13,7 +13,7 @@ import "shards-ui/dist/css/shards.min.css";
 
 const CURRENT_USER = '10001';
 function App() {
-  const [taskList, setTasks] = useState([{id:0, name:0, description: ""}]); 
+  const [taskList, setTasks] = useState([{id:0, name:0, description: "", category:""}]); 
   
   useEffect(() => {
     axios.get(`http://localhost:8080/users/${CURRENT_USER}`).then(
