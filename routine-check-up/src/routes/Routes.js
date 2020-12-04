@@ -2,15 +2,27 @@ import React from 'react'
 import {Link, Route, Switch} from 'react-router-dom'
 import TaskControl from '../Components/Tasks/TaskControl'
 import DailyTaskControl from '../Components/DailyTaskControl'
-
+import FriendsList from '../Components/Friends'
+import HomePage from '../Components/HomePage'
 
 const Routes = (props) => {
     return(
             <Switch>
-                <Route path="/routine"><TaskControl /></Route>
-                <Route path="/todays-tasks"><TaskControl /></Route>
-                <Route path="/manage-tasks"><TaskControl /></Route>
-                <Route path="/friends"><TaskControl /></Route>
+                <Route path="/routine">
+                    <TaskControl />
+                </Route>
+                <Route path="/home">
+                    <HomePage  {...props}/>
+                </Route>
+                <Route path="/todays-tasks">
+                    <TaskControl />
+                </Route>
+                <Route path="/manage-tasks">
+                    <TaskControl />
+                </Route>
+                <Route path="/friends">
+                    <FriendsList />
+                </Route>
                 <Route path="/" exact>
                     <DailyTaskControl 
                         tasks = {props.tasks}

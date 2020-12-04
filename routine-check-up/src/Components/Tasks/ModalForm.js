@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, FormInput, FormGroup, FormTextarea, Modal, ModalBody, ModalHeader } from "shards-react";
+import { Button, Form, FormInput, FormGroup, FormSelect, FormTextarea, Modal, ModalBody, ModalHeader } from "shards-react";
 
 const ModalForm = (props) => {
     const [open, setOpen] = useState(false);
@@ -27,8 +27,7 @@ const ModalForm = (props) => {
         <Button 
             pill
             size="sm"
-            theme="success"
-            style={{color:"black"}}
+            theme="primary"
             onClick={toggle}
         >
             <strong>+ Add a task</strong>
@@ -39,17 +38,26 @@ const ModalForm = (props) => {
             <Form onSubmit={forms}>
                 <FormGroup>
                     <label htmlFor="#taskname">Task Name</label>
-                    <FormInput id="#taskname" name="name" placeholder="Task Name" />
+                    <FormInput id="#taskname" name="name" />
                 </FormGroup>
                 <FormGroup>
                     <label htmlFor="#description">Password</label>
-                    <FormTextarea type="description" name="description" id="#description" placeholder="Task Description" />
+                    <FormTextarea type="description" name="description" id="#description" />
+                </FormGroup>
+                <FormGroup>
+                    <label htmlFor="#categories">Category</label>
+                    <FormSelect name="categories" id="#categories">
+                        <option value="reading">Reading</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="organization">Exercise</option>
+                        <option value="selfcare">Selfcare</option>
+                        <option value="selfcare">Hobbies</option>
+                    </FormSelect>                
                 </FormGroup>
                 <Button
                     pill
                     size="sm"
-                    theme="success"
-                    style={{color:"black"}}
+                    theme="primary"
                     type="submit"
                 > 
                     Add
