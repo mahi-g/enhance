@@ -1,8 +1,13 @@
 body, h2 {
-    color: white;
+    color: #30507d;
 }
 
 .Divider {
-    border: 1px solid #c1c1c5;
+    border: .5px solid #c1c1c5;
     margin-bottom: 16px;
+    background: #c1c1c5;
+}
+
+.Card {
+    box-shadow: none;
 }

@@ -1,25 +1,18 @@
 import React from 'react';
-import { Button } from 'shards-react';
 import Divider from "./Divider";
-
+import ModalForm from "./Tasks/ModalForm"
 const header = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'
 }
 
-const DailyTaskHeader = () => {
+const DailyTaskHeader = (props) => {
     return(
         <div style={{marginTop:"16px"}}>
             <div style={header}>
                 <h2>Today's Routine</h2>
-                <Button pill
-                        size="sm"
-                        theme="success"
-                        style={{color:"black"}}
-                >
-                    <strong>+ Add a task</strong>
-                </Button>
+                <ModalForm handleAddTask={props.handleAddTask}/>
             </div>
             <Divider/>
         </div>

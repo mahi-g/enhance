@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle } from 'shards-react';
 import { AiOutlineCloseCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 
-
 const card = {
     background: '#727a83',
     border: '1px solid #333333',
@@ -16,7 +15,6 @@ const layout = {
 
 
 const DailyTask = (props) => {
-    console.log(props);
     const { currentTask } = props;
     console.log(currentTask);
 
@@ -26,16 +24,16 @@ const DailyTask = (props) => {
     }
 
     return(
-        <Card fluid style={card} className="text-white">
-            <CardBody style={layout}>
+
+        <Card style={ card } className="text-white">
+            <CardBody style={ layout }>
                 <div>
-                    <div style={{ display:'flex', justifyContent: 'space-between' }}>
+                    <div style={ layout }>
                         <CardTitle className="text-secondary">
                             Task #{ currentTask.id || "" }: { currentTask.name || "Add task to get started"}
                         </CardTitle>
                     </div>
                     <CardSubtitle className="text-muted">{ currentTask.description }</CardSubtitle>
-                    
                 </div>
                 <div>
                     <div onClick={ props.handleTaskClick }>

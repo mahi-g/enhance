@@ -6,17 +6,15 @@ const nav = {
     display: 'flex',
     justifyContent: 'flex-end'
 }
-const bgColor = {
-    background: '#383838'
-}
+
 
 const Navigation = () => {
     const [isOpen, setOpen] = useState(false);
     return(
-        <Navbar type="dark" expand="md" style={bgColor}>
-            <NavbarBrand to="/">Routine Check Up</NavbarBrand>
+        <Navbar sticky expand="md">
+            <NavbarBrand theme="dark" to="/">Enhance</NavbarBrand>
             <NavbarToggler onClick={()=>setOpen(!isOpen)}/>
-            <Collapse theme="light" open={isOpen} style={nav} navbar>
+            <Collapse theme="dark" open={isOpen} style={nav} navbar>
                 <NavItem theme="dark" className="list-unstyled">
                     <NavLink>
                         <Link to="/manage-tasks">

@@ -10,13 +10,30 @@
       "name": "Do Laundry",
       "id": 1,
       "description": "This is placeholder text for the description.",
-      "daysActive": [true, false, false, false, false, false, true]
+      "daysActive": [true, false, false, false, false, false, true],
+      "category": "Cleaning"
     },
     {
       "name": "Make Bed",
       "id": 2,
       "description": "Make your bed before work so it doesn't look bad in meetings.",
-      "daysActive": [false, true, true, true, true, true, false]
+      "daysActive": [false, true, true, true, true, true, false],
+      "category": "Cleaning"
+
+    },
+    {
+      "name": "Play games",
+      "id": 3,
+      "description": "",
+      "daysActive": [true, false, false, false, false, false, true],
+      "category": "Hobbies"
+    },
+    {
+      "name": "Fix Notes",
+      "id": 4,
+      "description": "Rewrite notes",
+      "daysActive": [false, true, true, true, true, true, false],
+      "category": "Reading"
     }
   ]
 }
