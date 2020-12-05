@@ -1,9 +1,11 @@
 import React from 'react';
 import { Card, CardBody, CardFooter,   CardHeader, CardTitle, CardSubtitle } from 'shards-react';
-import { AiOutlineCloseCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { MdDone, MdDelete } from 'react-icons/md';
 
 const card = {
-    marginTop: "5%"
+    marginTop: "5%",
+    boxShadow: 'none',
 }
 const cardHeader = {
     borderBottom: '1px solid #f0f3f7',
@@ -20,8 +22,7 @@ const cardBody = {
     background: "#fafbff",
 }
 const category = {
-    background: 'tomato',
-    color: '#ffffff',
+    background: '#f0f3fa',
     fontWeight: 'bold',
     fontSize: '.7em',
     padding: "2%",
@@ -47,10 +48,10 @@ const CurrentTask = (props) => {
                 <p style={ category }>{currentTask.category}</p>
                 <div style={ {display:'flex', flex:'column', justifyContent:'space-around'} }>
                     <div onClick={ props.handleTaskClick }>
-                        <AiOutlineCheckCircle size={30} />
+                        <MdDone size={20} />
                     </div>
                     <div onClick={ handleDelete }>
-                        <AiOutlineCloseCircle size={30} />
+                        <MdDelete size={20} />
                     </div>
                 </div>
             </CardFooter>

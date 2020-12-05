@@ -61,7 +61,7 @@ const ModalForm = (props) => {
                         <option value="cleaning">Cleaning</option>
                         <option value="organization">Exercise</option>
                         <option value="selfcare">Selfcare</option>
-                        <option value="selfcare">Hobbies</option>
+                        <option value="hobbies">Hobbies</option>
                     </FormSelect>                
                 </FormGroup>
                 <Button

@@ -16,7 +16,7 @@ const margin = {
     marginTop: "5%"
 }
 const col = {
-    minHeight: '100vh',
+    minHeight: '30vh',
     height: '100%',
     borderRight: '2px solid #e6ecf7'
 }
@@ -33,7 +33,7 @@ const HomePage = (props) => {
                         <Row>
                             <Col style={{ display:'flex', justifyContent:'space-between', marginTop:"5%", marginBottom:"5%", ...colInner }}>
                                 <h5>Tasks</h5>
-                                <ModalForm/>
+                                <ModalForm handleAddTask={props.handleAddTask}/>
                             </Col>
                         </Row>
                         <Row>
@@ -43,10 +43,12 @@ const HomePage = (props) => {
                                     <ButtonGroup size="sm">
                                         <Button 
                                             outline 
+                                            theme="primary"
                                             onClick={()=>{setCurrentTaskView(true)}}>
                                             Current
                                         </Button>
                                         <Button 
+                                            theme="primary"
                                             outline 
                                             onClick={()=>{setCurrentTaskView(false)}}>
                                             Day
@@ -59,11 +61,12 @@ const HomePage = (props) => {
                             currentTaskView 
                             ?<Fade in={true}>
                                 <Row>
-                                    <Col sm="8" lg="12"> <CurrentTask 
-                                        currentTask = {props.tasks[0]}
-                                        handleTaskDeletion={props.handleTaskDeletion}
-                                        handleTaskClick={props.handleTaskClick}
-                                        handleAddTask={props.handleAddTask}/>
+                                    <Col sm="8" lg="12"> 
+                                        <CurrentTask 
+                                            currentTask = {props.tasks[0]}
+                                            handleTaskDeletion={props.handleTaskDeletion}
+                                            handleTaskClick={props.handleTaskClick}
+                                        />
                                     </Col> 
                                 </Row>
                             </Fade>
