@@ -21,10 +21,10 @@ const Routes = (props) => {
                     <TaskControl />
                 </Route>
                 <Route path="/friends">
-                    <FriendsList />
+                    <FriendsList friends={props.friends}/>
                 </Route>
                 <Route path="/" exact>
-                    <DailyTaskControl 
+                    <DailyTaskControl
                         tasks = {props.tasks}
                         handleTaskDeletion={props.handleTaskDeletion}
                         handleTaskClick={props.handleTaskClick}
