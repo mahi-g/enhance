@@ -1,5 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Col, Container, Row} from "shards-react";
+import {
+    Button,
+    Col,
+    Container,
+    Row,
+    Modal,
+    ModalBody,
+    ModalHeader,
+    Form,
+    FormGroup,
+    FormInput,
+    FormTextarea, FormSelect
+} from "shards-react";
 import 'antd/dist/antd.css';
 import Divider from './Divider'
 import {Badge, Card, Avatar, Tag} from "antd";
@@ -30,7 +42,8 @@ const header = {
 
 const FriendsList = (props) => {
     const [friends, setFriends] = useState([]);
-
+    const [open, setOpen] = useState(false);
+    const toggle = () => setOpen(!open);
     useEffect(() => {
         const getFriendData = async () => {
             let friendDataArr = [];
@@ -49,19 +62,50 @@ const FriendsList = (props) => {
 
     const friendsOut = friends.map((friend, index) => {
         return (
-            <Badge.Ribbon text={friend.curWeekPoints + ((index === 0) ? " Points 👑": " Points")}>
+            <Badge.Ribbon text={friend.curWeekPoints + ((index === 0) ? " Points 👑" : " Points")}>
                 <Card style={card}>
                     <Avatar src={"https://picsum.photos/200?random=" + index} style={{margin: "8px"}}/>
                     <text><strong>{friend.name}</strong></text>
-                    {(friend.friends.includes(CURRENT_USER))? <Tag color="blue" style={{marginLeft: "16px"}}>Follows You</Tag>:<></>}
+                    {(friend.friends.includes(CURRENT_USER)) ?
+                        <Tag color="blue" style={{marginLeft: "16px"}}>Follows You</Tag> : <></>}
                     <Divider/>
                     <text style={{margin: "16px"}}>Next In Their Routine: <strong>{friend.Tasks[0].name}</strong></text>
-                    <p style={{border:"1px solid #c1c1c5", borderRadius: "25px", padding:"16px", background: "#f0efeb", color: "black"}}>{friend.Tasks[0].description}</p>
+                    <p style={{
+                        border: "1px solid #c1c1c5",
+                        borderRadius: "25px",
+                        padding: "16px",
+                        background: "#f0efeb",
+                        color: "black"
+                    }}>{friend.Tasks[0].description}</p>
                     <Tag>{friend.Tasks[0].category}</Tag>
                 </Card>
             </Badge.Ribbon>
         )
     });
+
+    const AddFriendModal = () => {
+        return (
+            <div>
+                <Button pill size="sm" theme="primary" onClick={toggle}>
+                    <strong>+ Add a Friend</strong>
+                </Button>
+                <Modal open={open} toggle={toggle}>
+                    <ModalHeader>Add a Friend</ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <FormGroup>
+                                <label htmlFor="#taskname">Enter your friend's ID:</label>
+                                <FormInput id="#taskname" name="Friend ID"/>
+                            </FormGroup>
+                            <Button pill size="sm" theme="primary" type="submit">
+                                Add
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+            </div>
+        )
+    };
 
     const HeaderDisplay = () => {
         return (
@@ -70,9 +114,7 @@ const FriendsList = (props) => {
                     <div style={{marginTop: "16px"}}>
                         <div style={header}>
                             <h2>Friends</h2>
-                            <Button pill size="sm" theme="primary">
-                                <strong>+ Add a Friend</strong>
-                            </Button>
+                            <AddFriendModal/>
                         </div>
                         <Divider/>
                     </div>
