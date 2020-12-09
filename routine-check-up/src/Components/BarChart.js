@@ -56,7 +56,7 @@ export default class CategoryBarChart extends PureComponent {
         <YAxis type="category" tick={{fontSize: 10}} dataKey="name" scale="point"/>
         <Tooltip />
         <Legend iconSize={10} wrapperStyle={{ marginLeft: "20px" }} />
-        <Bar dataKey="complete" fill="#8884d8" stackId="stack"/>
+        <Bar dataKey="complete" fill="#0088FE" stackId="stack"/>
         <Bar dataKey="incomplete" fill="#eee" stackId="stack"/>
 
       </BarChart>

@@ -11,6 +11,7 @@ import ModalForm from './Tasks/ModalForm'
 import CurrentTask from './CurrentTask'
 import TasksToday from './TasksToday'
 import CategoryBarChart from './BarChart'
+import CircleChart from './CircleChart'
 
 
 const col = {
@@ -72,8 +73,17 @@ const HomePage = (props) => {
                         }
                 </Col>
                 <Col sm="10" lg="3" style={col}>
-                        <h6>Your Progres</h6>
-                        <Card><CategoryBarChart/></Card>
+                        <h6>Your Progress</h6>
+                        <Row>
+                            <Col>
+                                <Card><CategoryBarChart/></Card>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Card><CircleChart/></Card>
+                            </Col>
+                        </Row>
                 </Col>
                 <Col sm="10" lg="4" style={col}>
                         <Row>
