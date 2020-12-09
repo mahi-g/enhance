@@ -46,7 +46,7 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
-        <Container style={{minHeight: '100vh', height: '100%', background:'#f2f6ff'}} fluid className="dr-example-container">
+        <Container style={{minHeight: '100vh', height: '100%', background:'#fafafa'}} fluid className="dr-example-container">
             <Routes 
               tasks={taskList}
               handleTaskDeletion={handleTaskDeletion}

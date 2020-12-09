@@ -11,3 +11,10 @@ body, h2 {
 .Card {
     box-shadow: none;
 }
+
+
+.recharts-legend-item { 
+    font-size: 0.75rem; 
+    margin: auto;
+}
+

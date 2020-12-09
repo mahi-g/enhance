@@ -10,11 +10,9 @@ import {
 import ModalForm from './Tasks/ModalForm'
 import CurrentTask from './CurrentTask'
 import TasksToday from './TasksToday'
+import CategoryBarChart from './BarChart'
 
 
-const margin = {
-    marginTop: "5%"
-}
 const col = {
     minHeight: '30vh',
     height: '100%',
@@ -74,9 +72,8 @@ const HomePage = (props) => {
                         }
                 </Col>
                 <Col sm="10" lg="3" style={col}>
-                        <h6>Your tasks today</h6>
-                        <Card><p>Finish Laundry</p></Card>
-                        <Card><p>Finish Laundry</p></Card>
+                        <h6>Your Progres</h6>
+                        <Card><CategoryBarChart/></Card>
                 </Col>
                 <Col sm="10" lg="4" style={col}>
                         <Row>
