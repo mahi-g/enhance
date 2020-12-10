@@ -28,15 +28,15 @@ const HomePage = (props) => {
     
     return(
             <Row>
-                <Col sm="10" lg="4" style={col}>
-                        <Row>
+                <Col sm={{size: 10, order: 12}}  lg="5" style={col}>
+                        <Row> 
                             <Col style={{ display:'flex', justifyContent:'space-between', marginTop:"5%", marginBottom:"5%", ...colInner }}>
                                 <h5>Tasks</h5>
                                 <ModalForm handleAddTask={props.handleAddTask}/>
                             </Col>
                         </Row>
                         <Row>
-                            <Col style={{ display:'flex', justifyContent:'space-between', marginTop:"5%" }}>
+                            <Col style={{ display:'flex', justifyContent:'space-between', marginTop:"2%" }}>
                                 <h6>Today</h6>
                                 <div>
                                     <ButtonGroup size="sm">
@@ -72,32 +72,47 @@ const HomePage = (props) => {
                             : <TasksToday {...props} />
                         }
                 </Col>
-                <Col sm="10" lg="3" style={col}>
-                        <h6>Your Progress</h6>
-                        <Row>
-                            <Col>
-                                <Card><CategoryBarChart/></Card>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Card><CircleChart/></Card>
-                            </Col>
-                        </Row>
+
+                <Col sm={{size: 10, order: 1 }} lg="3" style={col}>
+                    <br/>
+                    <h5>Your Progress</h5>
+                    <Row>
+                        <Col>
+                            <Card><CircleChart/></Card>
+                        </Col>
+                    </Row>
+                    <br/>
+                    <Row>
+                        <Col>
+                            <Card><CategoryBarChart/></Card>
+                        </Col>
+                    </Row>
+                    
                 </Col>
-                <Col sm="10" lg="4" style={col}>
+        
+               
+                <Col sm="10" lg={{size: 4, order: 12}} style={col}>
                         <Row>
-                            <Col style={colInner}>
-                                <h6>Recent Activities</h6>
+                            <Col style={{ display:'flex', justifyContent:'space-between', marginTop:"5%", marginBottom:"5%", ...colInner }}>
+                                <h5>Recent Activities</h5>
                             </Col>
                         </Row>
                         <Row>
                             <Col style={colInner}>
                                 <Card><p>Finish Laundry</p></Card>
+                                <br/>
                                 <Card><p>Finish Laundry</p></Card>
+                                <br/>
+
                                 <Card><p>Finish Laundry</p></Card>
+                                <br/>
+
                                 <Card><p>Finish Laundry</p></Card>
-                                <Card><p>Finish Laundry</p></Card>                            
+                                <br/>
+
+                                <Card><p>Finish Laundry</p></Card>  
+                                <br/>
+                          
                             </Col>
                         </Row>
                 </Col>
