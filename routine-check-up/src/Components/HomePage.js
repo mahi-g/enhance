@@ -12,7 +12,7 @@ import CurrentTask from './CurrentTask'
 import TasksToday from './TasksToday'
 import CategoryBarChart from './BarChart'
 import CircleChart from './CircleChart'
-
+import RecentActivities from './RecentActivities'
 
 const col = {
     minHeight: '30vh',
@@ -28,7 +28,7 @@ const HomePage = (props) => {
     
     return(
             <Row>
-                <Col sm={{size: 10, order: 12}}  lg="5" style={col}>
+                <Col sm={{size: 10, order: 12}}  lg="6" style={col}>
                         <Row> 
                             <Col style={{ display:'flex', justifyContent:'space-between', marginTop:"5%", marginBottom:"5%", ...colInner }}>
                                 <h5>Tasks</h5>
@@ -91,7 +91,7 @@ const HomePage = (props) => {
                 </Col>
         
                
-                <Col sm="10" lg={{size: 4, order: 12}} style={col}>
+                <Col sm="10" lg={{size: 3, order: 12}} style={col}>
                         <Row>
                             <Col style={{ display:'flex', justifyContent:'space-between', marginTop:"5%", marginBottom:"5%", ...colInner }}>
                                 <h5>Recent Activities</h5>
@@ -99,20 +99,7 @@ const HomePage = (props) => {
                         </Row>
                         <Row>
                             <Col style={colInner}>
-                                <Card><p>Finish Laundry</p></Card>
-                                <br/>
-                                <Card><p>Finish Laundry</p></Card>
-                                <br/>
-
-                                <Card><p>Finish Laundry</p></Card>
-                                <br/>
-
-                                <Card><p>Finish Laundry</p></Card>
-                                <br/>
-
-                                <Card><p>Finish Laundry</p></Card>  
-                                <br/>
-                          
+                                <RecentActivities />
                             </Col>
                         </Row>
                 </Col>

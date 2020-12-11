@@ -1,6 +1,9 @@
 body, h2, h5, h6 {
     color: #30507d;
 }
+h2, h5, h6{
+    font-weight: bold;
+}
 
 .Divider {
     border: .5px solid #c1c1c5;
