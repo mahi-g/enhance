@@ -10,15 +10,13 @@
       "name": "Clean",
       "id": 1,
       "description": "This is placeholder text for the description.",
-      "daysActive": [true, false, false, false, false, false, true],
-      "category": "Cleaning"
+      "daysActive": [true, false, false, false, false, false, true]
     },
     {
       "name": "Cook",
       "id": 2,
       "description": "This is placeholder text for the description.",
-      "daysActive": [true, true, true, true, true, true, true],
-      "category": "Cooking"
+      "daysActive": [true, true, true, true, true, true, true]
     }
   ]
 }
