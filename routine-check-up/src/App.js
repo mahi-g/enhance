@@ -13,18 +13,20 @@ import "shards-ui/dist/css/shards.min.css";
 
 const CURRENT_USER = '10001';
 function App() {
-  const [taskList, setTasks] = useState([{id:0, name:0, description: "", category:""}]); 
-  
+  const [taskList, setTasks] = useState([{id:0, name:0, description: "", category:""}]);
+  const [friends, setFriends] = useState([]);
+
   useEffect(() => {
     axios.get(`http://localhost:8080/users/${CURRENT_USER}`).then(
       ({ data }) => {
         setTasks(data.Tasks);
+        setFriends(data.friends);
       }
     )
   },[]);
 
   const handleTaskDeletion = (id) => {
-      const newTaskList = taskList.filter( (task) => task.id != id);
+      const newTaskList = taskList.filter( (task) => task.id !== id);
       newTaskList.length !== 0 ? setTasks(newTaskList) : setTasks([{id:0, name:0, description: ""}]);
   }
 
@@ -34,7 +36,7 @@ function App() {
 
   const handleAddTask = (formData) => {
     //id generation is temporary, this will be handled by the db after a post request to api
-    
+
     let currId = parseInt(taskList[taskList.length-1].id);
     currId++;
     const newTaskList = taskList.concat({...formData, id:currId});
@@ -48,7 +50,9 @@ function App() {
         <Navigation />
         <Container style={{minHeight: '100vh', height: '100%', background:'#fafafa'}} fluid className="dr-example-container">
             <Routes 
+
               tasks={taskList}
+              friends={friends}
               handleTaskDeletion={handleTaskDeletion}
               handleTaskClick={handleTaskClick}
               handleAddTask={handleAddTask}
