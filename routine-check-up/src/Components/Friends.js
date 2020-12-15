@@ -38,8 +38,19 @@ const header = {
     alignItems: 'center'
 }
 
-//FlexLayout = styled.div
-
+const currentTask = {
+    border: "1px solid #c1c1c5",
+    borderRadius: "25px",
+    padding: "16px",
+    background: "#f0efeb",
+    color: "black"
+}
+/**
+ * Base Component for the friends list page.
+ * @param props contains an array of string ids passed from the router component.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const FriendsList = (props) => {
     const [friends, setFriends] = useState([]);
     const [open, setOpen] = useState(false);
@@ -60,6 +71,11 @@ const FriendsList = (props) => {
         console.log(friends);
     }, [friends, props.friends]);
 
+    /**
+     * This variable contains a list of individual friend cards, created by mapping the friend data retrieved in the
+     * useEffect() hook to an Ant Design Card component. The card is wrapped in a ribbon component to display the the
+     * total points of the user the card belongs to.
+     */
     const friendsOut = friends.map((friend, index) => {
         return (
             <Badge.Ribbon text={friend.curWeekPoints + ((index === 0) ? " Points 👑" : " Points")}>
@@ -70,19 +86,16 @@ const FriendsList = (props) => {
                         <Tag color="blue" style={{marginLeft: "16px"}}>Follows You</Tag> : <></>}
                     <Divider/>
                     <text style={{margin: "16px"}}>Next In Their Routine: <strong>{friend.Tasks[0].name}</strong></text>
-                    <p style={{
-                        border: "1px solid #c1c1c5",
-                        borderRadius: "25px",
-                        padding: "16px",
-                        background: "#f0efeb",
-                        color: "black"
-                    }}>{friend.Tasks[0].description}</p>
+                    <p style={currentTask}>{friend.Tasks[0].description}</p>
                     <Tag>{friend.Tasks[0].category}</Tag>
                 </Card>
             </Badge.Ribbon>
         )
     });
 
+    /**
+     * This variable contains the contents of the "Add Friend" modal as well as the button used to spawn it.
+     */
     const AddFriendModal = () => {
         return (
             <div>
@@ -107,6 +120,9 @@ const FriendsList = (props) => {
         )
     };
 
+    /**
+     * This variable returns the header displayed at the top of the Friends page. It wraps the modal component.
+     */
     const HeaderDisplay = () => {
         return (
             <Row>
@@ -123,6 +139,10 @@ const FriendsList = (props) => {
         )
     };
 
+    /**
+     * Return statement for the FriendsList component, it wraps the header, and contains the list of friend cards
+     * saved in friendsOut.
+     */
     return (
         <Row>
             <Col>

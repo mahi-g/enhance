@@ -4,10 +4,14 @@ import TaskControl from '../Components/Tasks/TaskControl'
 import DailyTaskControl from '../Components/DailyTaskControl'
 import FriendsList from '../Components/Friends'
 import HomePage from '../Components/HomePage'
+import RecentActivities from "../Components/RecentActivities";
 
 const Routes = (props) => {
     return(
             <Switch>
+                <Route path="/recent-activities">
+                    <RecentActivities />
+                </Route>
                 <Route path="/routine">
                     <TaskControl />
                 </Route>
