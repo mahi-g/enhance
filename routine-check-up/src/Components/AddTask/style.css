@@ -1,0 +1,16 @@
+.category-btn {
+    background: white;
+    border: none;
+    width: 50%;
+    margin: auto;
+}
+
+.center-btn{
+    display: flex;
+    justify-items: 'space-between';
+}
+
+img {
+    height: 60px;
+    width: 60px;
+}

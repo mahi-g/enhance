@@ -7,7 +7,7 @@ import {
     Fade,
     Row 
 } from 'shards-react'
-import ModalForm from './Tasks/ModalForm'
+import ModalForm from './AddTask/ModalForm'
 import CurrentTask from './CurrentTask'
 import TasksToday from './TasksToday'
 import CategoryBarChart from './BarChart'

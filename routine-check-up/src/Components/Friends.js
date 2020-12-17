@@ -15,8 +15,6 @@ import {
 import 'antd/dist/antd.css';
 import Divider from './Divider'
 import {Badge, Card, Avatar, Tag} from "antd";
-import ModalForm from "./Tasks/ModalForm";
-import DailyTaskHeader from "./DailyTasksHeader";
 
 //ToDo: convert this to a context later
 const CURRENT_USER = 10001;

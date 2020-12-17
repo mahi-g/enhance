@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }from 'react'
 import { Card, CardBody, CardTitle } from 'shards-react'
 import { CgProfile } from 'react-icons/cg'
 
@@ -9,7 +9,7 @@ const card = {
 }
 
 const activities = [
-    { name: 'Angie', activity:"all tasks for today", time: "2020-12-10 21:34:00" },
+    { name: 'Angie', activity:"all tasks for today", time: "2020-12-10 21:35:00" },
     { name: 'Angie', activity:"all tasks for today", time: "2020-12-10 20:40:00" },
     { name: 'John', activity:"cleaning", time: "2020-12-10 16:00:00" },
     { name: 'Emily', activity:"self-care", time: "2020-12-10 14:30:00" },
@@ -23,13 +23,17 @@ const activities = [
 ]
 
 const RecentActivities = (props) => {
+
+    const showMore = (activities) => {
+        
+    }
     const getTime = (time) => {
         const timeInMS = new Date().getTime() - new Date(time).getTime();
         const retTime = timeInMS/1000 <= 60 ? Math.floor(timeInMS/1000)+"s ago" : timeInMS/60000 <= 60 ? Math.floor(timeInMS/60000)+"m ago" : timeInMS/3600000 <= 24 ? Math.floor(timeInMS/3600000)+"h ago" : time.split(' ')[0];
         console.log(retTime);
         return retTime;
     }
-    const recentActivities = activities.map(activity => {
+    const recentActivities = activities.map((activity, index) => {
         return(
             <Card style={card}>
                 <CardBody style={{padding: '2px', margin: '2%'}}>
@@ -50,6 +54,7 @@ const RecentActivities = (props) => {
     return (
         <>
             { recentActivities }
+            <button onClick={showMore()}>show more</button>
         </>
     );
 }

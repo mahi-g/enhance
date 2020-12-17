@@ -1,6 +1,6 @@
 import React from 'react';
 import Divider from "./Divider";
-import ModalForm from "./Tasks/ModalForm"
+import ModalForm from "./AddTask/ModalForm"
 const header = {
     display: 'flex',
     justifyContent: 'space-between',
