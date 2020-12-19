@@ -73,8 +73,7 @@ const ModalForm = (props) => {
             pill
             size="sm"
             theme="primary"
-            onClick={toggle}
-        >
+            onClick={toggle}>
             <strong>+ Add a task</strong>
         </Button>
 
@@ -84,29 +83,27 @@ const ModalForm = (props) => {
                 <Form onSubmit={forms}>
                     { 
                         steps === 1 
-                        ? <ChooseCategory handleChange={ handleChange }/> : steps === 2 
-                        ? <TaskName handleChange={ handleChange } /> : steps === 3
-                        ? <Description handleChange={ handleChange }/> : <p>component pending</p>
+                        ? <ChooseCategory handleChange={handleChange} /> : steps === 2 
+                        ? <TaskName handleChange={handleChange} name={formData[name]} /> : steps === 3
+                        ? <Description handleChange={handleChange} description={formData[description]}/> : <PickDates/>
                     }
+                        <Button 
+                            outline
+                            pill 
+                            size="sm"
+                            theme="primary"
+                            onClick={ handlePrevious } >
+                            Previous
+                        </Button> 
                     {
                         steps <= 3 
-                        ? <div className="center-btn">
-                            <Button 
-                                outline
-                                pill 
-                                size="sm"
-                                theme="primary"
-                                onClick={ handlePrevious } >
-                                Previous
-                            </Button> 
-                            <Button 
-                                pill 
-                                size="sm"
-                                theme="primary"
-                                onClick={ handleNext } >
-                                Next
-                            </Button>
-                          </div>
+                        ? <Button 
+                            pill 
+                            size="sm"
+                            theme="primary"
+                            onClick={ handleNext } >
+                            Next
+                        </Button>
                         : <Button 
                             pill 
                             size="sm"
@@ -157,7 +154,7 @@ const TaskName = (props) => {
     return (
         <FormGroup>
             <label htmlFor="#taskname">Task Name</label>
-            <FormInput id="#taskname" name="name" onChange={ props.handleChange }/>
+            <FormInput id="#taskname" name="name" value={ props.name} onChange={ props.handleChange }/>
         </FormGroup>
     )
 }
@@ -165,8 +162,25 @@ const TaskName = (props) => {
 const Description = (props) => {
     return (
         <FormGroup>
-            <label htmlFor="#description">Description</label>
-            <FormTextarea name="description" id="#description" onChange={ props.handleChange }/>
+            <label htmlFor="#description">Description</label> 
+            <FormTextarea name="description" id="#description" value={ props.description } onChange={ props.handleChange }/>
+        </FormGroup>
+    )
+}
+
+const PickDates = (props) => {
+    return (
+        <FormGroup>
+            <label htmlFor="#description">Select days you're completing this routine</label> 
+            <div>
+                <Button className="round-btn">S</Button>
+                <Button className="round-btn">M</Button>
+                <Button className="round-btn">T</Button>
+                <Button className="round-btn">W</Button>
+                <Button className="round-btn">T</Button>
+                <Button className="round-btn">F</Button>
+                <Button className="round-btn">S</Button>
+            </div>
         </FormGroup>
     )
 }
