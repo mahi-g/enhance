@@ -29,9 +29,6 @@ const ModalForm = (props) => {
     const forms = (e) => {
         e.preventDefault();
         toggle();
-       
-        //console.log(formData);
-
         if(formData.hasOwnProperty('name')){
             props.handleAddTask(formData);
             setFormData({});
@@ -43,7 +40,8 @@ const ModalForm = (props) => {
     const handleChange = (e) => {
         e.preventDefault();
         let { name, value } = e.target;
-
+        console.log("Value");
+        console.log(value);
         if(steps === 1) {
             name = e.target.name;
             value = e.target.alt;
@@ -84,8 +82,8 @@ const ModalForm = (props) => {
                     { 
                         steps === 1 
                         ? <ChooseCategory handleChange={handleChange} /> : steps === 2 
-                        ? <TaskName handleChange={handleChange} name={formData[name]} /> : steps === 3
-                        ? <Description handleChange={handleChange} description={formData[description]}/> : <PickDates/>
+                        ? <TaskName handleChange={handleChange} name={formData.name} /> : steps === 3
+                        ? <Description handleChange={handleChange} description={formData.description}/> : <PickDates/>
                     }
                         <Button 
                             outline
@@ -150,20 +148,20 @@ const ChooseCategory = (props) => {
     );
 }
 
-const TaskName = (props) => {
+const TaskName = ({ name, handleChange }) => {
     return (
         <FormGroup>
             <label htmlFor="#taskname">Task Name</label>
-            <FormInput id="#taskname" name="name" value={ props.name} onChange={ props.handleChange }/>
+            <FormInput id="#taskname" name="name" type ="text" value={name} onChange={handleChange}/>
         </FormGroup>
     )
 }
 
-const Description = (props) => {
+const Description = ({ description, handleChange }) => {
     return (
         <FormGroup>
             <label htmlFor="#description">Description</label> 
-            <FormTextarea name="description" id="#description" value={ props.description } onChange={ props.handleChange }/>
+            <FormTextarea name="description" id="#description" value={description} onChange={handleChange }/>
         </FormGroup>
     )
 }
