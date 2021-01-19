@@ -1,20 +1,42 @@
 .category-btn {
-    background: white;
-    border: none;
-    width: 50%;
-    margin: auto;
-}
-
-.center-btn{
+    width: 40%;
+    height: 40%;
     display: flex;
-    justify-items: 'space-between';
+    justify-content: space-between;
+    margin: 5%;
 }
 
-.round-btn{
-    border-radius: 50%;
+.error{
+    border: 1px solid#4dc583;
+}
+
+.error-msg{
+    font-size: small;
+    padding-top: 2px;
+    color: #4dc583;
+}
+
+.modal-title {
+    display: flex; 
+    justify-content: space-between; 
+    min-width: 100%;
+}
+.center-img{
+    margin-top: 10%;
+}
+.modal-footer{
+    justify-content: space-between;
 }
 
 img {
     height: 60px;
     width: 60px;
+}
+
+img:hover{
+    filter: brightness(0) invert(1);
+}
+
+img::select{
+    filter: brightness(0) invert(1);
 }

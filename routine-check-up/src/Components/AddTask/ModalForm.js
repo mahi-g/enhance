@@ -1,14 +1,14 @@
 import React from "react";
 import { 
     Button, 
-    Form, 
     FormCheckbox, 
     FormInput, 
     FormGroup,
     FormTextarea, 
     Modal, 
     ModalBody, 
-    ModalHeader 
+    ModalFooter,
+    ModalHeader,
 } from "shards-react";
 
 import book from '../../assets/book.svg';
@@ -25,9 +25,10 @@ class ModalForm extends React.Component {
         this.state = {
             open: false,
             steps: 1,
-            days: [false, false, false, false, false, false, false],
+            days: [true, true, true, true, true, true, true],
             name: '',
             description: '',
+            error: false
         }
         this.toggle = this.toggle.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
@@ -35,9 +36,6 @@ class ModalForm extends React.Component {
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleNext = this.handleNext.bind(this);
         this.handlePrevious = this.handlePrevious.bind(this);
-
-
-
     }
 
     toggle() {
@@ -51,7 +49,7 @@ class ModalForm extends React.Component {
         this.toggle();
         if(this.state.hasOwnProperty('name')){
             this.props.handleAddTask(this.state);
-            this.setState({ steps: 1, name: ''});
+            this.setState({ steps: 1, name: '', description: '', days: [false, false, false, false, false, false, false]});
         }
     }
 
@@ -74,17 +72,20 @@ class ModalForm extends React.Component {
         e.preventDefault();
         console.log(i, name);
         this.setState( prev => { 
-            const currState = [...prev[name]];
+            const currState = prev.days;
             currState[i] = !currState[i];
-            return ({[name]: currState});
+            return ({[name]: [...currState]});
         });
     }
 
     handleNext(e){
         e.preventDefault();
-        if(this.state.steps < 4) {
+        if(this.state.steps === 2 && this.state.name === ''){
+            this.setState({error:true})
+        }
+        else if(this.state.steps < 4) {
             this.setState( prev => {
-                return { steps: prev.steps+1 }
+                return { steps: prev.steps+1, error: false }
             });
         }
     }
@@ -112,15 +113,21 @@ class ModalForm extends React.Component {
                 </Button>
 
                 <Modal open={this.state.open} toggle={this.toggle}>
-                <ModalHeader>Add a task <p>Step {this.state.steps}</p></ModalHeader>
+                    <ModalHeader>
+                        <p>Add a task</p>
+                        <p>Step {this.state.steps}</p>
+                    </ModalHeader>
                     <ModalBody>
                                 {
                                     this.state.steps === 1 
                                     ? <ChooseCategory handleChange={this.handleChange} /> : this.state.steps === 2 
-                                    ? <TaskName handleChange={this.handleChange} name={this.state.name} /> : this.state.steps === 3
+                                    ? <TaskName handleChange={this.handleChange} error = {this.state.error} name={this.state.name} /> : this.state.steps === 3
                                     ? <Description handleChange={this.handleChange} description={this.state.description}/> 
                                     : <PickDates handleDaySelection={this.handleDaySelection} days={this.state.days} />
                                 }
+                    </ModalBody>
+
+                    <ModalFooter>
                                 <Button 
                                     outline
                                     pill 
@@ -131,14 +138,16 @@ class ModalForm extends React.Component {
                                 </Button> 
                             {
                                 this.state.steps <= 3 
-                                ? <Button 
+                                ? 
+                                <Button 
                                     pill 
                                     size="sm"
-                                    theme="primary"
-                                    onClick={this.handleNext} >
+                                    theme="primary" 
+                                    onClick={this.handleNext}>
                                     Next
-                                </Button>
-                                : <Button 
+                                </Button> 
+                                : 
+                                <Button 
                                     pill 
                                     size="sm"
                                     theme="primary" 
@@ -147,7 +156,8 @@ class ModalForm extends React.Component {
                                     Add
                                 </Button>
                             }
-                    </ModalBody>
+                    </ModalFooter>
+
                 </Modal>
             </div>
         );
@@ -155,41 +165,47 @@ class ModalForm extends React.Component {
   }
 
 const ChooseCategory = (props) => {
+    const words = [{bubble}, {cup}, {guitar}, {book}, {shampoo}, {running}];
     return (
-        <FormGroup>
-            <button className="category-btn">
-                <img src={bubble} alt="Cleaning" name="category" onClick={props.handleChange} /> 
-                <p>Cleaning</p>
-            </button>
-            <button className="category-btn">
-                <img src={cup} alt="Work" name="category" onClick={props.handleChange} />
-                <p>Work</p>
-            </button>
-            <button className="category-btn">
+        <FormGroup className="form-btn">
+            <Button outline className="category-btn">
+                <div className="center-img">
+                    <img src={bubble} alt="Cleaning" name="category" onClick={props.handleChange} /> 
+                    <p>Cleaning</p>
+                </div>
+            </Button>
+            <Button outline className="category-btn">
+                <div className="center-img">
+                    <img src={cup} alt="Work" name="category" onClick={props.handleChange} />
+                    <p>Work</p>
+                </div>
+            </Button>
+            <Button outline className="category-btn">
                 <img src={guitar} alt="Hobbies" name="category" onClick={props.handleChange} />
                 <p>Hobbies</p>
-            </button>
-            <button className="category-btn">
+            </Button>
+            <Button outline className="category-btn">
                 <img src={book} alt="Reading" name="category" onClick={props.handleChange} />
                 <p>Reading</p>
-            </button>
-            <button className="category-btn">
+            </Button>
+            <Button outline className="category-btn">
                 <img src={shampoo} alt="Selfcare" name="category" onClick={props.handleChange} />
                 <p>Self-care</p>
-            </button>
-            <button className="category-btn">
+            </Button>
+            <Button  outline className="category-btn">
                 <img src={running} alt="Fitness" name="category" onClick={props.handleChange} />
                 <p>Fitness</p>
-            </button>
+            </Button>
         </FormGroup>
     );
 }
 
-const TaskName = ({ name, handleChange }) => {
+const TaskName = ({ name, error, handleChange }) => {
     return (
         <FormGroup>
             <label htmlFor="#taskname">Task Name</label>
             <FormInput id="#taskname" name="name" type ="text" value={name} onChange={ handleChange }/>
+            { error && <p className="error-msg">Task name is required!</p> }
         </FormGroup>
     )
 }
@@ -219,7 +235,7 @@ const PickDates = (props) => {
     });
     return (
         <FormGroup>
-            <label>Select the days you're completing this routine</label> 
+            <label>Select the days you are completing this routine</label> 
             <div>
                 {radioForms}
             </div>
