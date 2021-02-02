@@ -1,5 +1,8 @@
-body, h2 {
+body, h2, h5, h6 {
     color: #30507d;
+}
+h2, h5, h6{
+    font-weight: bold;
 }
 
 .Divider {
@@ -10,4 +13,10 @@ body, h2 {
 
 .Card {
     box-shadow: none;
+}
+
+
+.recharts-legend-item { 
+    font-size: 0.75rem; 
+    margin: auto;
 }

@@ -40,7 +40,7 @@ const CurrentTask = (props) => {
     console.log("TaskToday ", props);
     return(
         <Card style={ card }>
-            <CardHeader style={ cardHeader }>{ currentTask.id || "" }. { currentTask.name ||"Add task to get started"}</CardHeader>    
+            <CardHeader style={ cardHeader }>{ currentTask.name ||"Add task to get started"}</CardHeader>    
             { currentTask.description 
               && <CardBody style={cardBody}> {currentTask.description} </CardBody> 
             }
