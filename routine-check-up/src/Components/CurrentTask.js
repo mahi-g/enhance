@@ -1,7 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardFooter,   CardHeader, CardTitle, CardSubtitle } from 'shards-react';
-import { AiOutlineDelete } from 'react-icons/ai';
-import { MdDone, MdDelete } from 'react-icons/md';
+import { Button, Card, CardBody, CardFooter,   CardHeader, CardTitle, CardSubtitle } from 'shards-react';
 
 const card = {
     marginTop: "5%",
@@ -41,18 +39,35 @@ const CurrentTask = (props) => {
     return(
         <Card style={ card }>
             <CardHeader style={ cardHeader }>{ currentTask.name ||"Add task to get started"}</CardHeader>    
-            { currentTask.description 
-              && <CardBody style={cardBody}> {currentTask.description} </CardBody> 
-            }
+            { currentTask.description && <CardBody style={cardBody}> {currentTask.description} </CardBody> }
             <CardFooter style={ cardFooter }>
-                <p style={ category }>{currentTask.category}</p>
-                <div style={ {display:'flex', flex:'column', justifyContent:'space-around'} }>
-                    <div onClick={ props.handleTaskClick }>
-                        <MdDone size={20} />
-                    </div>
-                    <div onClick={ handleDelete }>
-                        <MdDelete size={20} />
-                    </div>
+                { currentTask.category && <p style={ category }>{currentTask.category}</p> }
+                <div 
+                    style={ 
+                        {
+                            display:'flex', 
+                            flex:'column', 
+                            justifyContent:'space-around', 
+                            alignItems: 'center'
+                        } 
+                    }
+                >
+                    Did you complete this task?
+                    <Button 
+                        pill                                     
+                        size="sm"
+                        onClick={props.handleTaskClick}
+                    >
+                         Yes 
+                    </Button>
+                    <Button 
+                        outline 
+                        pill
+                        size="sm"
+                        onClick={handleDelete}
+                    >
+                         No 
+                    </Button>
                 </div>
             </CardFooter>
         </Card>

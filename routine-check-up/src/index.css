@@ -1,8 +1,13 @@
-body, h2, h5, h6 {
-    color: #30507d;
+body, h2, h5, h4, h6 {
+    color: #333333;
+    font-family: 'Roboto', sans-serif;
 }
-h2, h5, h6{
-    font-weight: bold;
+body{
+    background: #f4f4f4;
+}
+
+h2, h5, h4, h6{
+    font-weight: 700;
 }
 
 .Divider {
@@ -11,12 +16,13 @@ h2, h5, h6{
     background: #c1c1c5;
 }
 
-.Card {
-    box-shadow: none;
-}
-
-
 .recharts-legend-item { 
     font-size: 0.75rem; 
     margin: auto;
 }
+
+
+/* 
+#c8e3d9ff green
+#9fd2beff dark green
+*/

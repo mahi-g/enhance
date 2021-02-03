@@ -5,7 +5,7 @@ import Routes from './routes/Routes'
 import axios from 'axios';
 import { Container } from "shards-react";
 import Footer from './Components/Layout/Footer'
-import Navigation from './Components/Navigation'
+import Navigation from './Components/Layout/Navigation'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
@@ -48,9 +48,8 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
-        <Container style={{minHeight: '100vh', height: '100%', background:'#fafafa'}} fluid className="dr-example-container">
+        <Container style={{width: '95vw', margin: 'auto', minHeight: '100vh', height: '100%'}} fluid className="dr-example-container">
             <Routes 
-
               tasks={taskList}
               friends={friends}
               handleTaskDeletion={handleTaskDeletion}

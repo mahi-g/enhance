@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
-const data = [{ name: 'complete', value: 5},{name: 'incomplete', value: 12 }];
-const COLORS = ['#0088FE', '#eee'];
+const data = [{ name: 'complete', value: 10},{name: 'incomplete', value: 12 }];
+const COLORS = ['#8BA1DB', '#333'];
 
 
 class CircleChart extends PureComponent {
@@ -21,12 +21,11 @@ class CircleChart extends PureComponent {
             cy={100} 
             startAngle={90}
             endAngle={-360}
-            innerRadius={60}
-            outerRadius={68} 
-            fill="#8884d8"
+            innerRadius={57}
+            outerRadius={70} 
             >
             {
-                data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+                data.map((entry, index) => <Cell stroke={COLORS[index % COLORS.length]} fill={COLORS[index % COLORS.length]}/>)
             }
             </Pie>
             <Tooltip />

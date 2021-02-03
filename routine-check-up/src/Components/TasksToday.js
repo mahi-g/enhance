@@ -7,7 +7,6 @@ const TasksToday = (props) => {
     const { tasks } = props;
 
     const tasksForToday = tasks.map((task) => {
-        console.log(task);
         return(
             <Fade in={true}>
                 <Row>
@@ -23,7 +22,6 @@ const TasksToday = (props) => {
             </Fade>
         );
     });
-    console.log(tasksForToday);
     return(
         <>
             {tasksForToday}

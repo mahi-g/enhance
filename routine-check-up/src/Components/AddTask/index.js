@@ -19,7 +19,7 @@ import running from '../../assets/running.svg';
 import shampoo from '../../assets/shampoo.svg';
 import './style.css';
 
-class ModalForm extends React.Component {
+class AddTask extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -244,4 +244,4 @@ const PickDates = (props) => {
 }
 
 
-export default ModalForm;
+export default AddTask;
