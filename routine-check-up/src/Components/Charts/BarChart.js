@@ -12,7 +12,7 @@ const data = [
     name: 'reading', complete: 40, incomplete: 30
   },
   {
-    name: 'cleaning', complete: 5, incomplete: 0
+    name: 'cleaning', complete: 10, incomplete: 20
   },
   {
     name: 'exercise', complete: 30, incomplete: 18
@@ -21,10 +21,10 @@ const data = [
     name: 'hobbies', complete: 25, incomplete: 20
   },
   {
-    name: 'organization', complete: 10, incomplete: 4
+    name: 'work', complete: 10, incomplete: 22
   },
   {
-    name: 'self-care', complete: 23, incomplete: 3
+    name: 'self-care', complete: 23, incomplete: 30
   },
 ];
 
@@ -60,18 +60,24 @@ export default class CategoryBarChart extends PureComponent {
   render() {
     return (
       <BarChart
-        width={300}
-        height={270}
+        width={260}
+        height={250}
         data={data}
-        margin={{
-          top: 20, right: 30, left: 20, bottom: 5,
-        }}
+        margin={
+          {
+            top: 20, right: 40, left: -35, bottom: 10,
+          }
+        }
         barSize={15}
       >
         <XAxis 
           dataKey="name" 
           type="category" 
-          tick={{fontSize: 12}} 
+          tick={{fontSize: 10}} 
+          angle={0} 
+          textAnchor="center"
+          interval = {1}
+          padding={{ left: 20, right: 20 }}
         />
         <YAxis  
           tick={false}

@@ -107,9 +107,9 @@ class AddTask extends React.Component {
                 <Button 
                     pill
                     size="sm"
-                    theme="primary"
+                    className="button"
                     onClick={this.toggle}>
-                    <strong>+ Add a task</strong>
+                    + Add a task
                 </Button>
 
                 <Modal open={this.state.open} toggle={this.toggle}>

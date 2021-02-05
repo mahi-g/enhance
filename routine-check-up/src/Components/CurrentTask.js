@@ -1,31 +1,39 @@
 import React from 'react';
-import { Button, Card, CardBody, CardFooter,   CardHeader, CardTitle, CardSubtitle } from 'shards-react';
+import { Button, Card, CardFooter, CardHeader } from 'shards-react';
 
 const card = {
     marginTop: "5%",
     boxShadow: 'none',
+    maxWidth: '500px',
 }
 const cardHeader = {
-    borderBottom: '1px solid #f0f3f7',
-    background:"#ffffff",
+    background: '#fff',
+    borderRadius: '0.67rem',
 }
 const cardFooter = {
     display: 'flex',
     justifyContent: 'space-between',
     borderTop: '1px solid #f0f3f7',
-    background:"#ffffff",
-    paddingBottom: "0"
+    paddingBottom: "0",
+    background: '#fff'
 }
-const cardBody = {
-    background: "#fafbff",
-}
+
 const category = {
+    width: '75px',
+    height: '30px',
     background: '#f0f3fa',
     fontWeight: 'bold',
     fontSize: '.7em',
-    padding: "2%",
-    borderRadius: '3px'
+    borderRadius: '3px',
+    textAlign: 'center',
+    paddingTop: '7px',
+    marginTop: '10px'
 }
+
+const btns = {
+    margin: '0 25px'
+}
+
 
 const CurrentTask = (props) => {
 
@@ -34,42 +42,52 @@ const CurrentTask = (props) => {
         props.handleTaskDeletion(currentTask.id);
     }
 
-    const { currentTask } = props;
+    const { currentTask, topTask } = props;
     console.log("TaskToday ", props);
     return(
         <Card style={ card }>
-            <CardHeader style={ cardHeader }>{ currentTask.name ||"Add task to get started"}</CardHeader>    
-            { currentTask.description && <CardBody style={cardBody}> {currentTask.description} </CardBody> }
-            <CardFooter style={ cardFooter }>
-                { currentTask.category && <p style={ category }>{currentTask.category}</p> }
-                <div 
-                    style={ 
-                        {
-                            display:'flex', 
-                            flex:'column', 
-                            justifyContent:'space-around', 
-                            alignItems: 'center'
-                        } 
-                    }
-                >
-                    Did you complete this task?
-                    <Button 
-                        pill                                     
-                        size="sm"
-                        onClick={props.handleTaskClick}
+            <CardHeader style={ cardHeader }>
+                <h6>{currentTask.name ||"Add task to get started"}</h6>
+                {
+                    currentTask.description&&<div>{currentTask.description}</div> 
+                }
+                { 
+                    currentTask.category&&<div style={category}>{currentTask.category}</div> 
+                } 
+            </CardHeader>
+            {
+                topTask&&
+                <CardFooter style={cardFooter}>
+                    <div 
+                        style={ 
+                            {
+                                display:'flex', 
+                                flex:'column', 
+                                justifyContent:'space-around', 
+                                alignItems: 'center'
+                            } 
+                        }
                     >
-                         Yes 
-                    </Button>
-                    <Button 
-                        outline 
-                        pill
-                        size="sm"
-                        onClick={handleDelete}
-                    >
-                         No 
-                    </Button>
-                </div>
-            </CardFooter>
+                        Did you complete this task?
+                        <Button 
+                            pill                                     
+                            size="sm"
+                            style={btns}
+                            onClick={props.handleTaskClick}
+                        >
+                            Yes 
+                        </Button>
+                        <Button 
+                            outline 
+                            pill
+                            size="sm"
+                            onClick={handleDelete}
+                        >
+                            No 
+                        </Button>
+                    </div>
+                </CardFooter>
+            }
         </Card>
     );
 }

@@ -10,7 +10,6 @@ import {
     Form,
     FormGroup,
     FormInput,
-    FormTextarea, FormSelect
 } from "shards-react";
 import 'antd/dist/antd.css';
 import Divider from './Divider'

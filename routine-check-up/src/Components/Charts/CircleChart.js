@@ -8,21 +8,21 @@ const COLORS = ['#8BA1DB', '#333'];
 class CircleChart extends PureComponent {
     render() {
         return (
-            <PieChart width={250} height={200} onMouseEnter={this.onPieEnter}>
-            <text x={125} y={100} textAnchor="middle" dominantBaseline="middle">
+            <PieChart width={250} height={250} onMouseEnter={this.onPieEnter}>
+            <text x={125} y={120} textAnchor="middle" dominantBaseline="middle">
                 {data[1].value}
             </text>
-            <text x={125} y={115} textAnchor="middle" dominantBaseline="middle">
+            <text x={125} y={140} textAnchor="middle" dominantBaseline="middle">
                 left
             </text>
             <Pie
             data={data} 
-            cx={125} 
-            cy={100} 
+            cx={120} 
+            cy={120} 
             startAngle={90}
             endAngle={-360}
-            innerRadius={57}
-            outerRadius={70} 
+            innerRadius={65}
+            outerRadius={79} 
             >
             {
                 data.map((entry, index) => <Cell stroke={COLORS[index % COLORS.length]} fill={COLORS[index % COLORS.length]}/>)

@@ -48,7 +48,7 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
-        <Container style={{width: '95vw', margin: 'auto', minHeight: '100vh', height: '100%'}} fluid className="dr-example-container">
+        <Container style={{width: '100vw', margin: 'auto 2px', minHeight: '100vh', height: '100%'}} fluid className="dr-example-container">
             <Routes 
               tasks={taskList}
               friends={friends}

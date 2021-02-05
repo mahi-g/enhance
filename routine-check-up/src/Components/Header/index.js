@@ -2,12 +2,14 @@ import React from 'react';
 
 const format = {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
 }
-const Header = ({headerText, text=''}) => {
+
+
+const Header = ({headerText, text='', size="20px"}) => {
     return (
         <div style={format}>
-            <h5>{headerText}</h5>
+            <div style={{fontSize:size, fontWeight: '700'}}>{headerText}</div>
             {text&&<p>{text}</p>}
         </div>
     );
