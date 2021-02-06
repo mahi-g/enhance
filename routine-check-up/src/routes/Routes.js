@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link, Route, Switch} from 'react-router-dom'
-import TaskControl from '../Components/Tasks/TaskControl'
 import FriendsList from '../Components/Friends'
 import HomePage from '../pages/HomePage'
 import RecentActivities from "../Components/RecentActivities";

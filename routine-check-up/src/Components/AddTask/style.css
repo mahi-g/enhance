@@ -1,9 +1,13 @@
 .category-btn {
-    width: 40%;
-    height: 40%;
+    width: 35%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 5%;
+    padding: 2%;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .error{
@@ -22,15 +26,16 @@
     min-width: 100%;
 }
 .center-img{
-    margin-top: 10%;
+    margin-top: auto;
+    text-align: center;
 }
 .modal-footer{
     justify-content: space-between;
 }
 
 img {
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
 }
 
 /* img:hover{
