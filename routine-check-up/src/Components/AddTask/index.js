@@ -241,14 +241,12 @@ const PickDates = (props) => {
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const radioForms = days.map((day, i) => {
         return ( 
-            
                 <FormCheckbox 
                     key={props.days[i]}
                     checked={props.days[i]} 
                     onChange={ (e) => props.handleDaySelection(e, i, "days") }>
                     {day}
                 </FormCheckbox>
-            
         )
     });
     return (
