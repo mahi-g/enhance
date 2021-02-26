@@ -37,11 +37,3 @@ img {
     height: 80px;
     width: 80px;
 }
-
-/* img:hover{
-    filter: brightness(0) invert(1);
-}
-
-img::select{
-    filter: brightness(0) invert(1);
-} */

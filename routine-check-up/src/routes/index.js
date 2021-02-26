@@ -1,8 +1,9 @@
 import React from 'react'
-import {Link, Route, Switch} from 'react-router-dom'
-import FriendsList from '../Components/Friends'
-import HomePage from '../pages/HomePage'
-import RecentActivities from "../Components/RecentActivities";
+import { Link, Route, Switch } from 'react-router-dom'
+import FriendsList from '../components/Friends'
+import Home from '../pages/home'
+import RecentActivities from "../components/RecentActivities";
+import Test from '../pages/test';
 
 const Routes = (props) => {
     return(
@@ -13,8 +14,11 @@ const Routes = (props) => {
                 <Route path="/friends">
                     <FriendsList friends={props.friends}/>
                 </Route>
+                <Route path="/test">
+                    <Test/>
+                </Route>
                 <Route path="/">
-                    <HomePage  {...props}/>
+                    <Home  {...props}/>
                 </Route>
                 <Route>
                     <div>
