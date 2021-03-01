@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './routes'
 
 import axios from 'axios';
-import { Container } from "shards-react";
+import { Container } from './components/styledComponents'
 import Footer from './components/Layout/Footer'
 import Navigation from './components/Layout/Navigation'
 
@@ -48,16 +48,15 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
-        <Container style={{width: '100vw', margin: 'auto 2px', minHeight: '100vh', height: '100%'}} fluid className="dr-example-container">
-            <Routes 
-              tasks={taskList}
-              friends={friends}
-              handleTaskDeletion={handleTaskDeletion}
-              handleTaskClick={handleTaskClick}
-              handleAddTask={handleAddTask}
-            />
-        </Container>
-        <Footer />
+            <Container>
+              <Routes 
+                tasks={taskList}
+                friends={friends}
+                handleTaskDeletion={handleTaskDeletion}
+                handleTaskClick={handleTaskClick}
+                handleAddTask={handleAddTask}
+              />
+            </Container>
       </Router>
     </div>
   );

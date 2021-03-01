@@ -1,18 +1,22 @@
 import React from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
-import FriendsList from '../components/Friends'
+import Activities from "../components/Activities";
+import Friend from '../components/Friend'
 import Home from '../pages/home'
-import RecentActivities from "../components/RecentActivities";
+import ManageTasks from '../components/ManageTasks';
 import Test from '../pages/test';
 
 const Routes = (props) => {
     return(
             <Switch>
-                <Route path="/recent-activities">
-                    <RecentActivities />
+                <Route path="/activities">
+                    <Activities />
+                </Route>
+                <Route path="/manage-tasks">
+                    <ManageTasks />
                 </Route>
                 <Route path="/friends">
-                    <FriendsList friends={props.friends}/>
+                    <Friend/>
                 </Route>
                 <Route path="/test">
                     <Test/>

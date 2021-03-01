@@ -2,6 +2,7 @@ import React from 'react'
 import { 
     Button, 
     //Card,
+    Container,
     Col, 
     Fade,
     Row 
@@ -52,6 +53,8 @@ const Home = (props) => {
 
 
     return(
+        <Container style={{width: '100vw', margin: 'auto 2px', minHeight: '100vh', height: '100%'}} fluid className="dr-example-container">
+
             <Row>
                 <Col sm={{size: 10, order: 12}}  lg="6">
                         <Row> 
@@ -123,6 +126,7 @@ const Home = (props) => {
                         </Row>
                 </Col>
             </Row>
+        </Container>
     )
 }
 

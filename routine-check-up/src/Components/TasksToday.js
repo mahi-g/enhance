@@ -36,6 +36,7 @@ const TasksToday = (props) => {
                             bodyHeight = "110"
                             height = "150"
                             borderTop = "#F4F4F4"
+                            edit = {true}
                         />
                     </Col>
                 </Row>
