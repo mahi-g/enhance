@@ -1,19 +1,20 @@
 import React from 'react'
 import { 
     Button, 
+    //Card,
+    Container,
     Col, 
-    Card, 
     Fade,
     Row 
 } from 'shards-react'
+import AddTask from '../components/AddTask'
+import CategoryBarChart from '../components/Charts/CategoryBarChart'
+import CircleChart from '../components/Charts/CircleChart'
+import CurrentTask from '../components/CurrentTask'
+import Header from '../components/Header'
+import RandomQuote from '../components/RandomQuote'
+import TasksToday from '../components/TasksToday'
 
-import AddTask from '../Components/AddTask'
-import CurrentTask from '../Components/CurrentTask'
-import Header from '../Components/Header'
-import TasksToday from '../Components/TasksToday'
-import CategoryBarChart from '../Components/Charts/BarChart'
-import CircleChart from '../Components/Charts/CircleChart'
-import RandomQuote from '../Components/RandomQuote'
 
 import friends from '../assets/friends.svg'
 
@@ -42,17 +43,25 @@ const data = [
     ];
 
     
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
 
-const HomePage = (props) => {
-    
+const Home = (props) => {
+    const date = new Date();   
+    const day = days[date.getDay()];
+    const month = months[date.getMonth()];
+
+
     return(
+        <Container style={{width: '100vw', margin: 'auto 2px', minHeight: '100vh', height: '100%'}} fluid className="dr-example-container">
+
             <Row>
                 <Col sm={{size: 10, order: 12}}  lg="6">
                         <Row> 
                             <Col style={{ display:'flex', justifyContent:'space-between', marginTop:'5%'}}>
                                 <div>
                                     <Header headerText="Tasks"/>
-                                    <div>Tue February 2</div>
+                                    <div>{day}, {month} {date.getDate()}</div>
                                 </div>
                                 <AddTask handleAddTask={props.handleAddTask}/>
                             </Col>
@@ -65,6 +74,10 @@ const HomePage = (props) => {
                                             currentTask = {data[0]}
                                             handleTaskDeletion={props.handleTaskDeletion}
                                             handleTaskClick={props.handleTaskClick}
+                                            bodyHeight = "100"
+                                            height = "160"
+                                            background = "#C8E3D9FF"
+                                            borderBottom = "#8FD4BC"
                                         />
                                     </Col> 
                                 </Row>
@@ -79,43 +92,17 @@ const HomePage = (props) => {
                     </Row>
                     <Row>
                         <Col>
-                            <Card 
-                                style={
-                                    {
-                                        boxShadow: 'none',
-                                        background: '#c8e3d9ff',
-                                        margin : '0px auto',
-                                        width: '240px',
-                                        height: '240px'
-                                    }
-                                }
-                            >
-                                <CategoryBarChart/>
-                            </Card>
+                            <CategoryBarChart/>
                         </Col>
                     </Row>
                     <br/>
                     <Row>
                         <Col>
-                            <Card
-                                style={
-                                    {
-                                        boxShadow: 'none',
-                                        background: '#c8e3d9ff',
-                                        margin : 'auto',
-                                        width: '240px',
-                                        height: '240px'
-                                    }
-                                }    
-                            >
-                                <CircleChart/>
-                            </Card>
+                            <CircleChart/> 
                         </Col>
                     </Row>
                     
                 </Col>
-        
-               
                 <Col sm="10" lg={{size: 3, order: 12}} style={{background:"#fff", borderRadius:'15px', marginTop: '2%'}}>
                         <Row >
                             <Col>
@@ -135,12 +122,12 @@ const HomePage = (props) => {
                                         src={friends}
                                     />
                                 </div>
-                                
                             </Col>
                         </Row>
                 </Col>
             </Row>
+        </Container>
     )
 }
 
-export default HomePage;
+export default Home;

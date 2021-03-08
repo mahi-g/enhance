@@ -1,49 +1,52 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavItem, NavLink, NavbarToggler } from 'shards-react';
 import {  Link } from 'react-router-dom'
-
+import styled from 'styled-components';
 const nav = {
     display: 'flex',
     justifyContent: 'flex-end',
-    background: '333'
 }
 const navbar = {
-    background: 'fff'
+    background: '#fff'
 }
+
+const StyledLink = styled(Link)`
+    color: #333;
+`
 
 const Navigation = () => {
     const [isOpen, setOpen] = useState(false);
     return(
             <Navbar expand="md">
-                <NavbarBrand theme="dark" to="/">Enhance</NavbarBrand>
+                <Link to="/">Enhance</Link>
                 <NavbarToggler onClick={()=>setOpen(!isOpen)}/>
                 <Collapse theme="dark" open={isOpen} style={nav} navbar>
                     <NavItem theme="dark" className="list-unstyled">
                         <NavLink>
-                            <Link to="/friends">
+                            <StyledLink to="/friends">
                                 Friends
-                            </Link>
+                            </StyledLink>
                         </NavLink>
                     </NavItem>
                     <NavItem theme="dark" className="list-unstyled">
                         <NavLink>
-                            <Link to="/activities">
+                            <StyledLink to="/activities">
                                 Activities
-                            </Link>
+                            </StyledLink>
                         </NavLink>
                     </NavItem>
                     <NavItem theme="dark" className="list-unstyled">
                         <NavLink>
-                            <Link to="/manage-tasks">
+                            <StyledLink to="/manage-tasks">
                                 Manage
-                            </Link>
+                            </StyledLink>
                         </NavLink>
                     </NavItem>
                     <NavItem theme="dark" className="list-unstyled">
                         <NavLink>
-                            <Link to="/signin">
+                            <StyledLink to="/signin">
                                 Sign In
-                            </Link>
+                            </StyledLink>
                         </NavLink>
                     </NavItem>
                 </Collapse>

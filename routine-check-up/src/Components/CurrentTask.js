@@ -1,95 +1,62 @@
 import React from 'react';
-import { Button, Card, CardFooter, CardHeader } from 'shards-react';
-
-const card = {
-    marginTop: "5%",
-    boxShadow: 'none',
-    maxWidth: '500px',
-}
-const cardHeader = {
-    background: '#fff',
-    borderRadius: '0.67rem',
-}
-const cardFooter = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    borderTop: '1px solid #f0f3f7',
-    paddingBottom: "0",
-    background: '#fff'
-}
-
-const category = {
-    width: '75px',
-    height: '30px',
-    background: '#f0f3fa',
-    fontWeight: 'bold',
-    fontSize: '.7em',
-    borderRadius: '3px',
-    textAlign: 'center',
-    paddingTop: '7px',
-    marginTop: '10px'
-}
-
-const btns = {
-    margin: '0 25px'
-}
-
+//import { Button, Card, CardFooter, CardHeader } from 'shards-react';
+import Card from '../components/Card';
+import { 
+    Button,
+    ButtonGroup,
+    Category,
+    Group
+} from './styledComponents'
 
 const CurrentTask = (props) => {
-
     const handleDelete = (e) => {
         e.preventDefault();
         props.handleTaskDeletion(currentTask.id);
     }
-
     const { currentTask, topTask } = props;
-    console.log("TaskToday ", props);
+
+    const footer = ( topTask &&
+            <>
+                <p>Did you complete this task?</p>
+                <ButtonGroup>
+                    <Button onClick={props.handleTaskClick}>Yes</Button>
+                    <Button onClick={handleDelete}>No</Button>
+                </ButtonGroup>
+            </>
+        );
+
+    const body = (
+            <>
+                { currentTask.description&&<div>{currentTask.description}</div> }
+                <Group>
+                    <Category>4:00 - 4:30 pm</Category>
+                    { 
+                        currentTask.category&&
+                        <Category>{currentTask.category}</Category>
+                    }
+                    {props.edit&&<Button>Edit</Button>}
+                </Group>
+            </>
+        );
+
     return(
-        <Card style={ card }>
-            <CardHeader style={ cardHeader }>
-                <h6>{currentTask.name ||"Add task to get started"}</h6>
-                {
-                    currentTask.description&&<div>{currentTask.description}</div> 
-                }
-                { 
-                    currentTask.category&&<div style={category}>{currentTask.category}</div> 
-                } 
-            </CardHeader>
-            {
-                topTask&&
-                <CardFooter style={cardFooter}>
-                    <div 
-                        style={ 
-                            {
-                                display:'flex', 
-                                flex:'column', 
-                                justifyContent:'space-around', 
-                                alignItems: 'center'
-                            } 
-                        }
-                    >
-                        Did you complete this task?
-                        <Button 
-                            pill                                     
-                            size="sm"
-                            style={btns}
-                            onClick={props.handleTaskClick}
-                        >
-                            Yes 
-                        </Button>
-                        <Button 
-                            outline 
-                            pill
-                            size="sm"
-                            onClick={handleDelete}
-                        >
-                            No 
-                        </Button>
-                    </div>
-                </CardFooter>
-            }
-        </Card>
+        <Card 
+            header = {currentTask.name ||"Add task to get started"}
+            body = {body}
+            footer = { footer || ''}
+            height = {props.height || '150' }
+            width = "400"
+            headerHeight = {props.headerHeight || '40' }
+            bodyHeight = {props.bodyHeight || '110' }
+            background = {props.background || '' }
+            borderBottom = {props.borderBottom || '' }
+            borderTop = {props.borderTop || '' }
+
+        />
+
     );
 }
 
 export default CurrentTask;
+//"#C8E3D9FF"
+//"#8FD4BC"

@@ -11,12 +11,6 @@ import {
     ModalHeader,
 } from "shards-react";
 
-// import book from '../../assets/book.svg';
-// import bubble from '../../assets/bubble.svg';
-// import cup from '../../assets/cup.svg';
-// import guitar from '../../assets/guitar.svg';
-// import running from '../../assets/running.svg';
-// import shampoo from '../../assets/shampoo.svg';
 import cleaning from '../../assets/icons/cleaning.svg';
 import selfcare from '../../assets/icons/selfcare.svg';
 import fitness from '../../assets/icons/fitness.svg';
@@ -106,8 +100,6 @@ class AddTask extends React.Component {
         }
     }
 
-   
-
     render(){
         return (
             <div>
@@ -118,7 +110,6 @@ class AddTask extends React.Component {
                     onClick={this.toggle}>
                     + Add a task
                 </Button>
-
                 <Modal open={this.state.open} toggle={this.toggle}>
                     <ModalHeader>
                         <p>Add a task</p>
@@ -133,7 +124,6 @@ class AddTask extends React.Component {
                                     : <PickDates handleChange={this.handleChange} handleDaySelection={this.handleDaySelection} days={this.state.days} />
                                 }
                     </ModalBody>
-
                     <ModalFooter>
                                 <Button 
                                     outline
@@ -141,7 +131,7 @@ class AddTask extends React.Component {
                                     size="sm"
                                     theme="primary"
                                     onClick={this.handlePrevious} >
-                                    Previous
+                                    Previously in the satement
                                 </Button> 
                             {
                                 this.state.steps <= 3 
@@ -164,7 +154,6 @@ class AddTask extends React.Component {
                                 </Button>
                             }
                     </ModalFooter>
-
                 </Modal>
             </div>
         );

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
-import Routes from './routes/Routes'
+import Routes from './routes'
 
 import axios from 'axios';
-import { Container } from "shards-react";
-import Footer from './Components/Layout/Footer'
-import Navigation from './Components/Layout/Navigation'
+import { Container } from './components/styledComponents'
+import Footer from './components/Layout/Footer'
+import Navigation from './components/Layout/Navigation'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
@@ -48,16 +48,15 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
-        <Container style={{width: '100vw', margin: 'auto 2px', minHeight: '100vh', height: '100%'}} fluid className="dr-example-container">
-            <Routes 
-              tasks={taskList}
-              friends={friends}
-              handleTaskDeletion={handleTaskDeletion}
-              handleTaskClick={handleTaskClick}
-              handleAddTask={handleAddTask}
-            />
-        </Container>
-        <Footer />
+            <Container>
+              <Routes 
+                tasks={taskList}
+                friends={friends}
+                handleTaskDeletion={handleTaskDeletion}
+                handleTaskClick={handleTaskClick}
+                handleAddTask={handleAddTask}
+              />
+            </Container>
       </Router>
     </div>
   );

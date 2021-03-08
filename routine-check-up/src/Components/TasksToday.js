@@ -9,7 +9,7 @@ const data = [
         name: "Read chapter 3",
        },
      {   category: "Hobbies",
-        description: "Take notes and highlight important parts of the book",
+        description: "Take notes and highlight important parts of the book. Take notes and highlight important parts of the book. Take notes and highlight important parts of the book",
         id: 1,
         name: "Go biking in the park"
        },
@@ -29,11 +29,14 @@ const TasksToday = (props) => {
                 <Row>
                     <Col sm="8" lg="12">
                         <CurrentTask 
-                            topTask = {false}
                             currentTask = {task}
                             handleTaskDeletion={props.handleTaskDeletion}
                             handleTaskClick={props.handleTaskClick}
                             handleAddTask={props.handleAddTask}
+                            bodyHeight = "110"
+                            height = "150"
+                            borderTop = "#F4F4F4"
+                            edit = {true}
                         />
                     </Col>
                 </Row>
