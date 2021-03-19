@@ -19,6 +19,34 @@ import hobby from '../../assets/icons/hobby.svg';
 import work from '../../assets/icons/work.svg';
 
 import './style.css';
+import styled from 'styled-components';
+
+const RadioButtonWrapper = styled.div`
+    display: flex;
+    justify-content: space-around; 
+    flex-wrap: wrap; 
+    & > * {
+        margin: 8px 10px 2px 0;
+        width: 64px;
+        height: 24px;
+    }
+`;
+const Label = styled.label`
+    margin: 16px 0 8px 0;
+    font-weight: 500;
+`;
+
+const StyledCheckBox = styled.input`
+    &:checked{
+        background: red;
+    }
+`;
+const StyledFormInput = styled(FormInput)`
+    border: 0.5px solid #c4c4c4;
+`;
+const StyledTextArea = styled(FormTextarea)`
+    border: 0.5px solid #c4c4c4;
+`;
 
 class AddTask extends React.Component {
     constructor(props){
@@ -29,7 +57,9 @@ class AddTask extends React.Component {
             days: [true, true, true, true, true, true, true],
             name: '',
             description: '',
-            error: false
+            error: false,
+            startTime: '10:00',
+            endTime: '10:30'
         }
         this.toggle = this.toggle.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
@@ -64,19 +94,13 @@ class AddTask extends React.Component {
     
         let form = this.state;
         form[name] = value;
-        console.log(form);
-        this.setState({form});
-        console.log(this.state);
+        this.setState({...form});
     }
     
-    handleDaySelection(e, i, name){
-        e.preventDefault();
-        console.log(i, name);
-        this.setState( prev => { 
-            const currState = prev.days;
-            currState[i] = !currState[i];
-            return ({[name]: [...currState]});
-        });
+    handleDaySelection(i, name){
+        const currState = this.state.days;
+        currState[i] = !currState[i];
+        this.setState({[name]: [...currState]});
     }
 
     handleNext(e){
@@ -84,7 +108,7 @@ class AddTask extends React.Component {
         if(this.state.steps === 2 && this.state.name === ''){
             this.setState({error:true})
         }
-        else if(this.state.steps < 4) {
+        else if(this.state.steps < 3) {
             this.setState( prev => {
                 return { steps: prev.steps+1, error: false }
             });
@@ -101,6 +125,7 @@ class AddTask extends React.Component {
     }
 
     render(){
+        const { name, description, days, startTime, endTime, error, steps, open } = this.state;
         return (
             <div>
                 <Button 
@@ -110,49 +135,65 @@ class AddTask extends React.Component {
                     onClick={this.toggle}>
                     + Add a task
                 </Button>
-                <Modal open={this.state.open} toggle={this.toggle}>
+                <Modal open={open} toggle={this.toggle}>
                     <ModalHeader>
                         <p>Add a task</p>
-                        <p>Step {this.state.steps}</p>
+                        <span><p style={{fontWeight:'300', fontSize:'14px', paddingTop:'5px'}}>Step {this.state.steps}</p></span>
                     </ModalHeader>
-                    <ModalBody style={{height:'60vh'}}>
-                                {
-                                    this.state.steps === 1 
-                                    ? <ChooseCategory handleChange={this.handleChange} /> : this.state.steps === 2 
-                                    ? <TaskName handleChange={this.handleChange} error = {this.state.error} name={this.state.name} description={this.state.description}/> : this.state.steps === 3
-                                    ? <Description handleChange={this.handleChange} description={this.state.description}/> 
-                                    : <PickDates handleChange={this.handleChange} handleDaySelection={this.handleDaySelection} days={this.state.days} />
-                                }
+                    <ModalBody style={{height:'55vh'}}>
+                    {
+                        steps === 1 
+                        ? <ChooseCategory handleChange={this.handleChange} /> 
+                        : steps === 2 
+                        ? <TaskName 
+                            handleChange={this.handleChange} 
+                            error = {error} 
+                            name={name} 
+                            description={description}
+                            />
+                        : <PickDates 
+                            handleChange={this.handleChange} 
+                            handleDaySelection={this.handleDaySelection} 
+                            days={days} 
+                            startTime = {startTime}
+                            endTime = {endTime}
+                            />
+                    }
                     </ModalBody>
                     <ModalFooter>
-                                <Button 
-                                    outline
-                                    pill 
-                                    size="sm"
-                                    theme="primary"
-                                    onClick={this.handlePrevious} >
-                                    Previously in the satement
-                                </Button> 
-                            {
-                                this.state.steps <= 3 
-                                ? 
-                                <Button 
-                                    pill 
-                                    size="sm"
-                                    theme="primary" 
-                                    onClick={this.handleNext}>
-                                    Next
-                                </Button> 
-                                : 
-                                <Button 
-                                    pill 
-                                    size="sm"
-                                    theme="primary" 
-                                    type="submit"
-                                    onClick={this.formSubmit}>
-                                    Add
-                                </Button>
-                            }
+                        <Button 
+                            outline
+                            pill 
+                            size="sm"
+                            onClick={this.handlePrevious} 
+                            style={{marginRight: '160px', color: "#333", border:"1px solid #8FD4BC"}}
+                            >
+                            Prev
+                        </Button> 
+                        {
+                            steps <= 2 
+                            ? 
+                            <Button 
+                                pill 
+                                size="sm"
+                                theme="primary" 
+                                onClick={this.handleNext}
+                                style={{background:"#8FD4BC", color: "#333", border:"1px solid #8FD4BC"}}
+                                >
+                                Next
+                            </Button>
+                            : 
+                            <Button 
+                                pill 
+                                size="sm"
+                                theme="primary" 
+                                type="submit"
+                                onClick={this.formSubmit}
+                                style={{background:"#8FD4BC", color: "#333", border:"1px solid #8FD4BC"}}
+                                >
+                                Add
+                            </Button>
+                        }
                     </ModalFooter>
                 </Modal>
             </div>
@@ -205,54 +246,53 @@ const ChooseCategory = (props) => {
     );
 }
 
-const TaskName = ({ name, description, error, handleChange }) => {
+const TaskName = ({ 
+    name, 
+    description, 
+    error, 
+    handleChange 
+}) => {
     return (
         <FormGroup>
-            <label htmlFor="#taskname">Task Name</label>
-            <FormInput id="#taskname" name="name" type ="text" value={name} onChange={ handleChange }/>
+            <Label htmlFor="#taskname">Task Name</Label>
+            <StyledFormInput id="#taskname" name="name" type ="text" value={name} onChange={ handleChange }/>
             { error && <p className="error-msg">Task name is required!</p> }
-            <label htmlFor="#description">Description</label> 
-            <FormTextarea name="description" id="#description" value={description} onChange={handleChange }/>
+            
+            <Label htmlFor="#description">Description</Label> 
+            <StyledTextArea name="description" id="#description" value={description} onChange={handleChange }/>
         </FormGroup>
     )
 }
 
-const Description = ({ description, handleChange }) => {
-    return (
-        <FormGroup>
-            <label htmlFor="#description">Description</label> 
-            <FormTextarea name="description" id="#description" value={description} onChange={handleChange}/>
-        </FormGroup>
-    )
-}
-
-const PickDates = (props) => {
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const radioForms = days.map((day, i) => {
+const PickDates = ({
+    startTime,
+    endTime,
+    days,
+    handleDaySelection
+}) => {
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const radioForms = weekDays.map((day, i) => {
         return ( 
-                <FormCheckbox 
-                    key={props.days[i]}
-                    checked={props.days[i]} 
-                    onChange={ (e) => props.handleDaySelection(e, i, "days") }>
-                    {day}
-                </FormCheckbox>
+            <div>
+                <StyledCheckBox 
+                    type="checkbox"
+                    checked={days[i]} 
+                    onChange={ () => handleDaySelection(i, "days") } 
+                />
+                <Label>{day}</Label>
+            </div>
+
         )
     });
     return (
         <FormGroup>
-            <label>Select the days you are completing this routine</label> 
-            <div style={{display:'flex', justifyContent:'space-around', flexWrap: 'wrap'}}>
+            <Label>Start</Label> 
+            <StyledFormInput type="time" value={startTime} onChange = {} />
+            <Label>End</Label> 
+            <StyledFormInput type="time" value={endTime}/>
+            <RadioButtonWrapper>
                 {radioForms}
-            </div>
-
-            <div>
-                <label>Start</label> 
-                <FormInput name="starttime" type="time" onChange={props.handleChange}></FormInput>
-            </div>
-            <div>
-                <label>End</label> 
-                <FormInput name="endtime" type="number" onChange={props.handleChange}></FormInput>
-            </div>
+            </RadioButtonWrapper>
         </FormGroup>
     )
 }

@@ -22,15 +22,15 @@ const ButtonGroup = styled.div`
         min-width: 100px;
 `;
 const Category = styled.div`
-    height: 20px;
-    width: ${ props => props.width ? props.width+'px' : "58px" };
+    height: 22px;
+    width: ${ props => props.width ? props.width+'px' : "auto" };
     background: #8FD4BC;
     color: #333333;
     font-weight: 500;
     font-size: 10px;
     border-radius: 4px;
     text-align: center;
-    padding: 3px;
+    padding: 4px 12px;
     margin: 0 5px;
 `;
 
