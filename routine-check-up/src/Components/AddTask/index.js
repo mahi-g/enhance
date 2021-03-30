@@ -23,11 +23,12 @@ import styled from 'styled-components';
 
 const RadioButtonWrapper = styled.div`
     display: flex;
-    justify-content: space-around; 
+    flex-direction: column;
     flex-wrap: wrap; 
+    height: 120px;
+    margin: 24px 0;
     & > * {
-        margin: 8px 10px 2px 0;
-        width: 64px;
+        margin: 8px 10px 8px 0;
         height: 24px;
     }
 `;
@@ -36,11 +37,6 @@ const Label = styled.label`
     font-weight: 500;
 `;
 
-const StyledCheckBox = styled.input`
-    &:checked{
-        background: red;
-    }
-`;
 const StyledFormInput = styled(FormInput)`
     border: 0.5px solid #c4c4c4;
 `;
@@ -79,14 +75,24 @@ class AddTask extends React.Component {
         e.preventDefault();
         this.toggle();
         if(this.state.hasOwnProperty('name')){
-            this.props.handleAddTask(this.state);
-            this.setState({ steps: 1, name: '', description: '', days: [false, false, false, false, false, false, false]});
+            const {name, description, days, startTime, endTime} = this.state;
+            this.props.handleAddTask({name, description, days, startTime, endTime});
+            this.setState({ 
+                steps: 1, 
+                name: '', 
+                description: '', 
+                days: [false, false, false, false, false, false, false], 
+                startTime: '10:00',
+                endTime: '10:30'
+            });
         }
     }
 
     handleChange(e){
         e.preventDefault();
         let { name, value } = e.target;
+
+        //inputs for step 1 
         if(this.state.steps === 1) {
             name = e.target.name;
             value = e.target.alt;
@@ -135,7 +141,7 @@ class AddTask extends React.Component {
                     onClick={this.toggle}>
                     + Add a task
                 </Button>
-                <Modal open={open} toggle={this.toggle}>
+                <Modal size="md" open={open} toggle={this.toggle}>
                     <ModalHeader>
                         <p>Add a task</p>
                         <span><p style={{fontWeight:'300', fontSize:'14px', paddingTop:'5px'}}>Step {this.state.steps}</p></span>
@@ -166,7 +172,7 @@ class AddTask extends React.Component {
                             pill 
                             size="sm"
                             onClick={this.handlePrevious} 
-                            style={{marginRight: '160px', color: "#333", border:"1px solid #8FD4BC"}}
+                            style={{marginRight: '65%', color: "#333", border:"1px solid #8FD4BC"}}
                             >
                             Prev
                         </Button> 
@@ -268,18 +274,20 @@ const PickDates = ({
     startTime,
     endTime,
     days,
-    handleDaySelection
+    handleDaySelection,
+    handleChange
 }) => {
     const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const radioForms = weekDays.map((day, i) => {
         return ( 
             <div>
-                <StyledCheckBox 
+                <FormCheckbox 
                     type="checkbox"
                     checked={days[i]} 
                     onChange={ () => handleDaySelection(i, "days") } 
-                />
-                <Label>{day}</Label>
+                >
+                {day}
+                </FormCheckbox>     
             </div>
 
         )
@@ -287,9 +295,9 @@ const PickDates = ({
     return (
         <FormGroup>
             <Label>Start</Label> 
-            <StyledFormInput type="time" value={startTime} onChange = {} />
+            <StyledFormInput type="time"  name="startTime" value={startTime} onChange={handleChange} />
             <Label>End</Label> 
-            <StyledFormInput type="time" value={endTime}/>
+            <StyledFormInput type="time" name="endTime"  value={endTime} onChange={handleChange} />
             <RadioButtonWrapper>
                 {radioForms}
             </RadioButtonWrapper>

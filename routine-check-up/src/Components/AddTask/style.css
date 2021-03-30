@@ -1,9 +1,9 @@
 .category-btn {
-    width: 35%;
+    width: 30%;
     height: 100%;
     display: flex;
     justify-content: center;
-    margin: 5%;
+    margin: 3%;
     padding: 2%;
     border: 1px solid #c4c4c4;
     border-radius: 5px;
